@@ -11,8 +11,8 @@ const ExpensesReducer=(state=initialState, action)=>{
         case "DELETE_EXPENSE":
             console.log(action.payload)
             let delID= action.payload
-            let undeletedExpenses=state.expenses.filter((expense)=> expense.ID=delID? action.payload:expense )
-            return{expenses:undeletedExpenses};
+            let undeletedExpenses=state.expenses.filter((expense)=> expense.id!==delID )
+            return{expenses: undeletedExpenses};
         default:
             return state;
     }
