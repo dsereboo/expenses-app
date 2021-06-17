@@ -1,0 +1,16 @@
+.custom{
+  background-color:rgb(75,0,130);
+}
+
+
+
+.btn-float.btn.btn-primary.custom.btn-lg{
+  background-color:rgb(75,0,130);
+  position:fixed;
+  width:60px;
+	height:60px;
+	bottom:40px;
+	right:10rem;
+  border-radius: 50%;
+  box-shadow: 2px 2px 3px rgb(156, 156, 156);
+}
