@@ -4,6 +4,7 @@ import './App.css';
 import {Container, Row , Col, Modal} from "react-bootstrap"
 import FloatButton from './components/FloatButton';
 import AddExpenses from "./components/AddExpense";
+import Expenses from "./components/Expenses";
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
   return (
     <Container>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header>
+        <Modal.Header closeButton>
           <Modal.Title>Record Expense</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -28,7 +29,7 @@ function App() {
       </Row>
       <Row>
         <Col>
-        Users will come here
+          <Expenses/>
         </Col>
         <FloatButton handleShow={handleShow}/>
       </Row>
