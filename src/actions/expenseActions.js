@@ -11,3 +11,11 @@ export function deleteExpense(expenseID){
         payload:expenseID,
     }
 }
+
+
+export function editExpense(updatedExpense){
+    return{
+        type:"EDIT_EXPENSE",
+        payload: updatedExpense,
+    }
+}
