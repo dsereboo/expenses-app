@@ -16,7 +16,7 @@ const AddExpenses=(props)=>{
     const handleSubmit=(event)=>{
         event.preventDefault()
         expense.id=Math.random().toString(36).slice(2)
-        props.addNewExpense(expense)
+        props.addExpense(expense)
         console.log("added")
     }
     
@@ -47,5 +47,5 @@ const AddExpenses=(props)=>{
     )
 }
 
-const mapDispatchToProps={addNewExpense: addExpense}
-export default connect(null, mapDispatchToProps)(AddExpenses)
+//const mapDispatchToProps={addNewExpense: addExpense}
+export default connect(null, {addExpense})(AddExpenses)

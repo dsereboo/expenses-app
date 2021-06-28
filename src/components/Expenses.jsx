@@ -1,14 +1,23 @@
 import React from "react"
+import { useEffect } from "react"
 import {Container, Row} from "react-bootstrap"
 import {connect} from "react-redux"
+import { getExpenses } from "../actions/expenseActions"
 import Expense from "./Expense"
 
 const Expenses=(props)=>{
+
+    useEffect(
+        ()=>{
+            props.getExpenses()
+        }, []
+    )
+    
     return(
         <Container>
             <Row>
                 {props.expenses.map((expense)=>
-                    <Expense expenseData={expense}/>
+                    <Expense expenseData={expense} key={expense.id}/>
                 )}
             </Row>
         </Container>
@@ -17,8 +26,12 @@ const Expenses=(props)=>{
 
 const mapStateToProps=(state)=>{
     return{
-        expenses: state.expenses,
+        expenses: state.expenses.expenses,
     }
 }
 
-export default connect(mapStateToProps,{})(Expenses)
+const mapDispatchToProps={
+    getExpenses: getExpenses
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Expenses)
