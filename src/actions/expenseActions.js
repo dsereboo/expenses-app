@@ -3,9 +3,7 @@
         type:"ADD_EXPENSE",
         payload:newExpense,
     }
-}*/
-
-import Expenses from "../components/Expenses";
+}
 
 export function deleteExpense(expenseID){
     return{
@@ -13,6 +11,7 @@ export function deleteExpense(expenseID){
         payload:expenseID,
     }
 }
+*/
 
 
 export function editExpense(updatedExpense){
@@ -34,12 +33,26 @@ export function getExpenses(){
                     allExpenses.push({...expense.data(), id:expense.id
                     })
                 })
-                console.log(allExpenses)
                 dispatch({type:"GET_EXPENSES", payload:allExpenses, })
             }
         )
         .catch(
             ()=>{console.log("Error in retrieving from firestore")}
+        )
+    }
+}
+
+export const deleteExpense=(expenseId)=>{
+    return(dispatch, state, {getFirestore})=>{
+        //async call to return firebase firestore
+        const db= getFirestore()
+        //delete data from firestire
+        db.collection('expenses').doc(expenseId).delete()
+        .then(
+            dispatch({type:"DELETE_EXPENSE", payload:expenseId})
+        )
+        .catch(
+            ()=>{console.log("Error deleting expense record")}
         )
     }
 }
