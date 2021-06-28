@@ -15,7 +15,6 @@ const UpdatedExpenses=(props)=>{
 
     const handleChange=(event)=>{
         setExpense({...expense, [event.target.name]:event.target.value})
-        console.log(expense)
     }
 
     const handleSubmit=(event)=>{
@@ -29,7 +28,12 @@ const UpdatedExpenses=(props)=>{
         <Form onSubmit={handleSubmit}>
             <Form.Group>
                 <Form.Label>Category</Form.Label>
-                <Form.Control name="category" value={expense.category} type="text" onChange={handleChange}/>
+                <Form.Control name="category" as="select" value={expense.category} type="text" onChange={handleChange}>
+                    <option>Food</option>
+                    <option>Transportation</option>
+                    <option>Medical</option>
+                    <option>Miscellanueos</option>
+                </Form.Control>
             </Form.Group>
             <Form.Group>
                 <Form.Label>Item</Form.Label>
@@ -48,5 +52,5 @@ const UpdatedExpenses=(props)=>{
     )
 }
 
-const mapDispatchToProps={editExpense: editExpense}
+const mapDispatchToProps={editExpense}
 export default connect(null, mapDispatchToProps)(UpdatedExpenses)

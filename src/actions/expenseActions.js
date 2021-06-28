@@ -11,7 +11,7 @@ export function deleteExpense(expenseID){
         payload:expenseID,
     }
 }
-*/
+
 
 
 export function editExpense(updatedExpense){
@@ -19,7 +19,8 @@ export function editExpense(updatedExpense){
         type:"EDIT_EXPENSE",
         payload: updatedExpense,
     }
-}
+}*/
+
 
 export function getExpenses(){
     return(dispatch, state, {getFirestore})=>{
@@ -38,6 +39,21 @@ export function getExpenses(){
         )
         .catch(
             ()=>{console.log("Error in retrieving from firestore")}
+        )
+    }
+}
+
+export const editExpense=(updatedExpense,expenseId)=>{
+    return(dispatch,state,{getFirestore})=>{
+        //async call to return firebase firestore
+        const db= getFirestore()
+        //edit expense record 
+        db.collection("expenses").doc(expenseId).update(updatedExpense)
+        .then(
+            dispatch({type:"EDIT_EXPENSE", payload:updatedExpense,})
+        )
+        .catch(
+            console.log("Error updating expense record")
         )
     }
 }
