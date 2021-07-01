@@ -10,9 +10,9 @@ const Expenses=(props)=>{
     useEffect(
         ()=>{
             props.getExpenses()
-        }, []
+        }, [props]
     )
-    
+
     return(
         <Container>
             <Row>

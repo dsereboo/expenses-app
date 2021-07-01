@@ -26,8 +26,8 @@ export function getExpenses(){
     return(dispatch, state, {getFirestore})=>{
         const db= getFirestore();
         //get data from firestore collection
-        db.collection('expenses').get()
-        .then(
+        db.collection('expenses')
+        .onSnapshot(
             (result)=>{
                 let allExpenses=[]
                 result.forEach((expense)=>{
@@ -36,9 +36,6 @@ export function getExpenses(){
                 })
                 dispatch({type:"GET_EXPENSES", payload:allExpenses, })
             }
-        )
-        .catch(
-            ()=>{console.log("Error in retrieving from firestore")}
         )
     }
 }
@@ -50,7 +47,7 @@ export const editExpense=(updatedExpense,expenseId)=>{
         //edit expense record 
         db.collection("expenses").doc(expenseId).update(updatedExpense)
         .then(
-            dispatch({type:"EDIT_EXPENSE", payload:updatedExpense,})
+            //dispatch({type:"EDIT_EXPENSE", payload:updatedExpense,})
         )
         .catch(
             console.log("Error updating expense record")
@@ -65,7 +62,7 @@ export const deleteExpense=(expenseId)=>{
         //delete data from firestire
         db.collection('expenses').doc(expenseId).delete()
         .then(
-            dispatch({type:"DELETE_EXPENSE", payload:expenseId})
+            //dispatch({type:"DELETE_EXPENSE", payload:expenseId})
         )
         .catch(
             ()=>{console.log("Error deleting expense record")}
@@ -82,7 +79,7 @@ export const addExpense=(expense)=>{
         .then(
             ()=>{
                 //When async call is successful dispatch redux action
-                dispatch({type: "ADD_USER", payload: expense,});
+                //dispatch({type: "ADD_USER", payload: expense,});
             }
         )
         .catch(
@@ -95,3 +92,4 @@ export const addExpense=(expense)=>{
        
 }
 }
+

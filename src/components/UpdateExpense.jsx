@@ -19,7 +19,7 @@ const UpdatedExpenses=(props)=>{
 
     const handleSubmit=(event)=>{
         event.preventDefault()
-        props.editExpense(expense)
+        props.editExpense(expense,expense.id)
         props.handleClose()
     }
 
